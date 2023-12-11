@@ -1,0 +1,1760 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "BIBLIOTECA VIRTUAL",
+        "description": "<html><body>Documentacion de la Biblioteca Virtual</p></body></html>",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Login_Usuarios/Administradores",
+            "description": "API para la creacion y acesso a la cuenta del usuario o administrador"
+        },
+        {
+            "name": "Libros_Usuarios",
+            "description": "API para las acciones de gestion del usuario con los libros"
+        }, {
+            "name": "Libros_Resenas",
+            "description": "API para las acciones de gestion del usuario con las reseñas"
+        },
+        {
+            "name": "Prestamos_Usuarios",
+            "description": "API para las acciones de gestion del usuario con los prestamos"
+        },
+        {
+            "name": "Configuracion_Usuarios",
+            "description": "API para la gestion de configuracion personal del usuario"
+        },
+        {
+            "name": "Administracion_Usuarios/Administradores",
+            "description": "API para la gestion de acciones de administradores sobre los usuarios"
+        }, {
+            "name": "Administracion_Libros",
+            "description": "API para la gestion de acciones de administradores sobre los libros"
+        }, {
+            "name": "Administracion_Resenas",
+            "description": "API para la gestion de acciones de administradores sobre los pretamos"
+        }, {
+            "name": "Administracion_Versiones",
+            "description": "API para la gestion de acciones de administradores sobre los versiones de los libros"
+        }, {
+            "name": "Administracion_Prestamos",
+            "description": "API para la gestion de acciones de administradores sobre los libros"
+        }
+    ],
+    "schemes": [
+        "http"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/Login/crearUsuario/": {
+            "post": {
+                "summary": "Servicio que permite la creacion de la cuenta del usuario",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    },
+                    {
+                        "name": "Cuenta",
+                        "in": "body",
+                        "description": "Creacion de cuenta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewUser"
+                        }
+                    }
+                ],
+                "tags": ["Login_Usuarios/Administradores"],
+                "responses": {
+                    "200": {
+                        "description": "Creacion de cuenta exitosa"
+                    },
+                    "403": {
+                        "description": "Error de creacion"
+                    }
+                }
+            }
+        }, "/api/Login/validarUsuario/": {
+            "post": {
+                "summary": "Servicio que permite validar la cuenta del usuario",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    },
+                    {
+                        "name": "Usuario",
+                        "in": "body",
+                        "description": "Procesando acceso",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Validation"
+                        }
+                    }
+                ],
+                "tags": ["Login_Usuarios/Administradores"],
+                "responses": {
+                    "200": {
+                        "description": "Acceso permitido"
+                    },
+                    "403": {
+                        "description": "Usuario inexistente"
+                    }
+                }
+            }
+        }, "/api/Login/validaradmministrador/": {
+            "post": {
+                "summary": "Servicio que permite validar la cuenta del administrador",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    },
+                    {
+                        "name": "Usuario",
+                        "in": "body",
+                        "description": "Procesando acceso",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Validation"
+                        }
+                    }
+                ],
+                "tags": ["Login_Usuarios/Administradores"],
+                "responses": {
+                    "200": {
+                        "description": "Acceso permitido"
+                    },
+                    "403": {
+                        "description": "Usuario inexistente"
+                    }
+                }
+            }
+        }, "/api/Libros/mostrarlibros/": {
+            "get": {
+                "tags": ["Libros_Usuarios"],
+                "summary": "Servicio que permite al usuario ver la lita de todos los libros existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de todos los libros que existen.</p><p>&nbsp;</p><p><em><strong>Libros existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de libros",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 3,
+                                    "titulo": "1984",
+                                    "autor": "George Orwell",
+                                    "descripcion": "Distopía totalitaria",
+                                    "tipo_version": "ePub",
+                                    "nombre": "Fantasia",
+                                    "disponible": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Book"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen libros"
+                    }
+                }
+            }
+        }, "/api/Libros/buscarlibro/": {
+            "post": {
+                "summary": "Servicio que permite al usuario buscar un libro por titulo o autor",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    },
+                    {
+                        "name": "Identificador",
+                        "in": "body",
+                        "description": "Buscar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SearchBook"
+                        }
+                    }
+                ],
+                "tags": ["Libros_Usuarios"],
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de libros con coincidencias",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 3,
+                                    "titulo": "1984",
+                                    "autor": "George Orwell",
+                                    "descripcion": "Distopía totalitaria",
+                                    "tipo_version": "ePub",
+                                    "nombre": "Distopia",
+                                    "disponible": 1
+                                }
+                            ]
+                        }, "schema": {
+                            "$ref": "#/definitions/Book"
+                        }
+                    },
+                    "403": {
+                        "description": "Libro inexistente"
+                    }
+                }
+            }
+        }, "/api/Libros/mostrarlibrospopulares/": {
+            "get": {
+                "tags": ["Libros_Usuarios"],
+                "summary": "Servicio que permite al usuario ver la lista de todos los libros mas destacados.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de todos los libros populares.</p><p>&nbsp;</p><p><em><strong>Libros populares</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de libros",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 3,
+                                    "titulo": "1984",
+                                    "cantidadReseñas": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/PopularBook"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen libros"
+                    }
+                }
+            }
+        }, "/api/Libros/mostrarlistalectura/{id}": {
+            "get": {
+                "tags": ["Libros_Usuarios"],
+                "summary": "Muestra la lista de lectura del usuario dado su identificador",
+                "description": "<p>Servicio que permite visualizar su lista de lectura al usuario</p><p>&nbsp;</p><p><em><strong>Lista de lectura:</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando lista:"
+                    },
+                    "403": {
+                        "description": "No existe lista de lectura"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Libros_Usuarios",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Review/crearreview/": {
+            "post": {
+                "summary": "Permite al usuario crear una reseña de un libro",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "Reseña",
+                        "in": "body",
+                        "description": "Creando reseña",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewReview"
+                        }
+                    }
+                ],
+                "tags": ["Libros_Resenas"],
+                "responses": {
+                    "200": {
+                        "description": "Creacion de Reseña exitosa"
+                    },
+                    "403": {
+                        "description": "Error de creacion"
+                    }
+                }
+            }
+        }, "/api/Review/mostrarreviews_propios/{id}": {
+            "get": {
+                "tags": ["Libros_Resenas"],
+                "summary": "Muestra las reseñas que ha creado el usuario dado su identificador",
+                "description": "<p>Servicio que permite visualizar al usuario la lista de reseñas que ha creado</p><p>&nbsp;</p><p><em><strong>Lista de reseñas:</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando reseñas"
+                    },
+                    "403": {
+                        "description": "No existen reseñas"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Review/mostrarreviews_book/{id}": {
+            "get": {
+                "tags": ["Libros_Resenas"],
+                "summary": "Muestra las reseñas de un libro dado su identificador",
+                "description": "<p>Servicio que permite visualizar al usuario las reseñas de un libro en particular</p><p>&nbsp;</p><p><em><strong>Lista de reseñas:</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando reseñas"
+                    },
+                    "403": {
+                        "description": "No existen reseñas"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del libro",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Review//modificarreviews/{id}": {
+            "put": {
+                "summary": "Actualizar el contenido de la reseña creada por el usuario",
+                "description": "<p>Servicio que permite editar la informaciòn de la reseña creado por el usuario dado el identificador de la reseña </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador de la reseña",
+                        "type": "number",
+                        "default": "4"
+                    },
+                    {
+                        "name": "Reseña",
+                        "in": "body",
+                        "description": "Contenido de la reseña",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/UpdateReview"
+                        }
+                    }
+                ],
+                "tags": ["Libros_Resenas"],
+                "responses": {
+                    "200": {
+                        "description": "Editacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de editacion"
+                    }
+                }
+            }
+        }, "/api/Review/eliminarreviews/{id}": {
+            "delete": {
+                "tags": ["Libros_Resenas"],
+                "summary": "Eliminacion de reseña dado su identificador",
+                "description": "<p>Servicio que permite al usuario eliminar una reseña dado el identificador de la reseña</p><p>&nbsp;</p><p><em><strong>Eliminando reseña</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Eliminacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador de la reseña",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/prestamos/mostrarprestamos_propios/{id}'": {
+            "get": {
+                "tags": ["Prestamos_Usuarios"],
+                "summary": "Muestra la lista de prestamos del usuario dado su identificador",
+                "description": "<p>Servicio que permite visualizar su lista de prestamos al usuario</p><p>&nbsp;</p><p><em><strong>Lista de prestamos:</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando prestamos"
+                    },
+                    "403": {
+                        "description": "No existen prestamos"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/prestamos/tiempodisponible_prestamo/{id}": {
+            "get": {
+                "tags": ["Prestamos_Usuarios"],
+                "summary": "Muestra el tiempo disponible de los prestamos del usuario dado el identificador del usuario",
+                "description": "<p>Servicio que permite visualizar el tiempo disponible de todos los prestamos solicitados</p><p>&nbsp;</p><p><em><strong>Tiempo disponible:</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Tiempo obtenido"
+                    },
+                    "403": {
+                        "description": "Error de obtencion de tiempo disponible"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/prestamos/devolverprestamos/{id}": {
+            "put": {
+                "tags": ["Prestamos_Usuarios"],
+                "summary": "Devuelve el libro prestado dado el identificador del prestamo",
+                "description": "<p>Servicio que permite cambiar el estado del prestamo</p><p>&nbsp;</p><p><em><strong>Devolviendo libro</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Libro devuelto"
+                    },
+                    "403": {
+                        "description": "Error de devolucion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del prestamo",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Prestamos/solicitarprestamos/": {
+            "post": {
+                "summary": "Servicio que permite la creacion de la cuenta del usuario",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "Cuenta",
+                        "in": "body",
+                        "description": "Creacion de cuenta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/Newloans"
+                        }
+                    }
+                ],
+                "tags": ["Prestamos_Usuarios"],
+                "responses": {
+                    "200": {
+                        "description": "Creacion de cuenta exitosa"
+                    },
+                    "403": {
+                        "description": "Error de creacion"
+                    }
+                }
+            }
+        }, "/api/Configuration/mostrardatos/{id}": {
+            "get": {
+                "tags": ["Configuracion_Usuarios"],
+                "summary": "Muestra los datos del usuario dado su identificador",
+                "description": "<p>Servicio que permite visualizar al usuario sus datos</p><p>&nbsp;</p><p><em><strong>Datos:</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando datos personales"
+                    },
+                    "403": {
+                        "description": "Error de visualizacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Configuration/modificardatos/{id}": {
+            "put": {
+                "summary": "Actualizacion de los datos del usuario dado su identificador",
+                "description": "<p>Servicio que permite al usuario editar su informacion dado su identificador </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    },
+                    {
+                        "name": "Usuario",
+                        "in": "body",
+                        "description": "Datos nuevos del usuario",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewUser"
+                        }
+                    }
+                ],
+                "tags": ["Configuracion_Usuarios"],
+                "responses": {
+                    "200": {
+                        "description": "Actualizacion de datos exitosa"
+                    },
+                    "403": {
+                        "description": "Error de actualizacion"
+                    }
+                }
+            }
+        }, "/api/Configuration/eliminardatos/{id}": {
+            "delete": {
+                "tags": ["Configuracion_Usuarios"],
+                "summary": "Eliminacion la cuenta del usuario dado su identificador",
+                "description": "<p>Servicio que elimina la cuenta dado el identificador del usuario </p><p>&nbsp;</p><p><em><strong>Eliminando cuenta</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Cuenta eliminada exitosamente"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Administrator/mostrarusuarios/": {
+            "get": {
+                "tags": ["Administracion_Usuarios/Administradores"],
+                "summary": "Listado de los usuarios existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de todos los usuarios que existen.</p><p>&nbsp;</p><p><em><strong>Usuarios existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando usuarios",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "usuarioID": 3,
+                                    "nombre": "Juan",
+                                    "correoElectronico": "correo.com"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/AUser"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen usuarios"
+                    }
+                }
+            }
+        }, "/api/Administrator/eliminarusuario/{id}": {
+            "delete": {
+                "tags": ["Administracion_Usuarios/Administradores"],
+                "summary": "Eliminacion la cuenta del usuario dado su identificador",
+                "description": "<p>Servicio que le permite al administrador eliminar la cuenta de un usuario dado el identificador del usuario </p><p>&nbsp;</p><p><em><strong>Eliminando cuenta</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Cuenta eliminada exitosamente"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Administrator/mostraradministradores/": {
+            "get": {
+                "tags": ["Administracion_Usuarios/Administradores"],
+                "summary": "Listado de los administradores existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que permite a un administrador ver  la lista de todos los administradores que existen.</p><p>&nbsp;</p><p><em><strong>Administradores existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Mostrando administradores",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "adminitradorID": 3,
+                                    "nombre": "Juan",
+                                    "correoElectronico": "correo.com"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/AUser"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen administradores"
+                    }
+                }
+            }
+        }, "/api/Administrator/eliminaradministrador/{id}": {
+            "delete": {
+                "tags": ["Administracion_Usuarios/Administradores"],
+                "summary": "Eliminacion la cuenta del administrador dado su identificador",
+                "description": "<p>Servicio que le permite al administrador eliminar la cuenta propia o de otro administrador dado el identificado</p><p>&nbsp;</p><p><em><strong>Eliminando cuenta</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Cuenta eliminada exitosamente"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del usuario",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Administrator/mostrarlibros/": {
+            "get": {
+                "tags": ["Administracion_Libros"],
+                "summary": "Servicio que permite al administrador ver la lita de todos los libros existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de todos los libros que existen.</p><p>&nbsp;</p><p><em><strong>Libros existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de libros",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 3,
+                                    "titulo": "1984",
+                                    "autor": "George Orwell",
+                                    "descripcion": "Distopía totalitaria",
+                                    "tipo_version": "ePub",
+                                    "nombre": "Fantasia",
+                                    "disponible": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Book"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen libros"
+                    }
+                }
+            }
+        }, "/api/Administrator/buscarlibro/": {
+            "post": {
+                "summary": "Servicio que permite al administrador buscar un libro por titulo o autor",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "Identificador",
+                        "in": "body",
+                        "description": "Buscar",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/SearchBook"
+                        }
+                    }
+                ],
+                "tags": ["Administracion_Libros"],
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de libros con coincidencias",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 3,
+                                    "titulo": "1984",
+                                    "autor": "George Orwell",
+                                    "descripcion": "Distopía totalitaria",
+                                    "tipo_version": "ePub",
+                                    "nombre": "Distopia",
+                                    "disponible": 1
+                                }
+                            ]
+                        }, "schema": {
+                            "$ref": "#/definitions/Book"
+                        }
+                    },
+                    "403": {
+                        "description": "Libro inexistente"
+                    }
+                }
+            }
+        }, "/api/Administrator/agregarlibros/": {
+            "post": {
+                "summary": "Agregacion de un libro",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "Libro",
+                        "in": "body",
+                        "description": "Agregando libro",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewBook"
+                        }
+                    }
+                ],
+                "tags": ["Administracion_Libros"],
+                "responses": {
+                    "200": {
+                        "description": "Libro agregado con exito"
+                    },
+                    "403": {
+                        "description": "Error de agregacion"
+                    }
+                }
+            }
+        }, "/api/Administrator/modificarlibros/{id}": {
+            "put": {
+                "summary": "Actualizacion de los datos del libro dado su identificador",
+                "description": "<p>Servicio que permite al administrador editar la informaciòn del libro dado su identificador </p><p>&nbsp;</p>",
+                "operationId": "update",
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del libro",
+                        "type": "number",
+                        "default": "1"
+                    },
+                    {
+                        "name": "Usuario",
+                        "in": "body",
+                        "description": "Datos nuevos del libro",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewBook"
+                        }
+                    }
+                ],
+                "tags": ["Administracion_Libros"],
+                "responses": {
+                    "200": {
+                        "description": "Editacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de editacion"
+                    }
+                }
+            }
+        }, "/api/Administrator/eliminarlibros/{id}": {
+            "delete": {
+                "tags": ["Administracion_Libros"],
+                "summary": "Eliminacion de un libro dado su identificador",
+                "description": "<p>Servicio que permite al administrador eliminar un libro dado su identificador </p><p>&nbsp;</p><p><em><strong>Libro eliminado</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Eliminacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "identificador del libro",
+                        "type": "number",
+                        "default": "8"
+                    }
+                ]
+            }
+        }, "/api/Administrator/mostrarlibrosestado/": {
+            "get": {
+                "tags": ["Administracion_Libros"],
+                "summary": "Servicio que permite al administrador ver la lita de todos los libros y saber su estado.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de los estados del los los libros que existen.</p><p>&nbsp;</p><p><em><strong>Libros existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de libros",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 3,
+                                    "titulo": "1984",
+                                    "autor": "George Orwell",
+                                    "estado": "disponible"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Bookestado"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen libros"
+                    }
+                }
+            }
+        }, "/api/Administrator/asignarversion/": {
+            "post": {
+                "summary": "Asignacion de una version a un libro",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "Version",
+                        "in": "body",
+                        "description": "Asignando version",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewVersion"
+                        }
+                    }
+                ],
+                "tags": ["Administracion_Versiones"],
+                "responses": {
+                    "200": {
+                        "description": "Asignacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de asignacion"
+                    }
+                }
+            }
+        }, "/api/Administrator/eliminarversion/{id}": {
+            "delete": {
+                "tags": ["Administracion_Versiones"],
+                "summary": "Eliminacion de una version del libro dado su identificador",
+                "description": "<p>Servicio que permite al administrador eliminar una version del libro dado el identificador de la version </p><p>&nbsp;</p><p><em><strong>Version eliminada</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Eliminacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador de la version",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Administrator/asignargeneros/": {
+            "post": {
+                "summary": "Asignacion de un genero a un libro",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "Libro",
+                        "in": "body",
+                        "description": "Agregando genero",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/NewGenders"
+                        }
+                    }
+                ],
+                "tags": ["Administracion_Generos"],
+                "responses": {
+                    "200": {
+                        "description": "Genero asignado con exito"
+                    },
+                    "403": {
+                        "description": "Error de asignacion"
+                    }
+                }
+            }
+        }, "/api/Administrator/mostrargeneros/": {
+            "get": {
+                "tags": ["Administracion_Generos"],
+                "summary": "Servicio que permite al administrador ver la lita de todos los generos existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de los generos que existen.</p><p>&nbsp;</p><p><em><strong>Generos existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de generos",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "gemeroID": 3,
+                                    "titulo": "Fantasia"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Genders"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen generos"
+                    }
+                }
+            }
+        }, "/api/Administrator/eliminarvgeneros/{id}": {
+            "delete": {
+                "tags": ["Administracion_Generos"],
+                "summary": "Eliminacion de un genero dado su identificador",
+                "description": "<p>Servicio que permite al administrador eliminar una genero dado el identificador del genero </p><p>&nbsp;</p><p><em><strong>Genero eliminado</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Eliminacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del genero",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Administrator/tiempodisponible_prestamos/": {
+            "get": {
+                "tags": ["Administracion_Prestamos"],
+                "summary": "Servicio que permite al administrador ver la lita de todos los prestamos existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de los prestamos que existen.</p><p>&nbsp;</p><p><em><strong>Prestamos existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de prestamos",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "prestamoID": 1,
+                                    "titulo_libro": "El Señor de los Anillos",
+                                    "nombre_solicitante": "Juan Pérez",
+                                    "fechaExpedicion": "2023-12-10T06:00:00.000Z",
+                                    "fechaRecibo": "2024-01-09T06:00:00.000Z",
+                                    "diasRestantes": 30,
+                                    "estado": "No Devuelto"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Availabletime_"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen prestamos"
+                    }
+                }
+            }
+        }, "/api/Administrator/devolverprestamos/{id}": {
+            "put": {
+                "tags": ["Administracion_Prestamos"],
+                "summary": "Devuelve el libro prestado dado el identificador del prestamo",
+                "description": "<p>Servicio que permite al administrador cambiar el estado del prestamo</p><p>&nbsp;</p><p><em><strong>Devolviendo libro</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Libro devuelto"
+                    },
+                    "403": {
+                        "description": "Error de devolucion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador del prestamo",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }, "/api/Administrator/mostrarreviews_book/": {
+            "get": {
+                "tags": ["Administracion_Resenas"],
+                "summary": "Servicio que permite al administrador ver la lita de todas los reseñas existentes.",
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }
+                ],
+                "description": "<p>Servicio que devuelve la lista de las reseñas que existen.</p><p>&nbsp;</p><p><em><strong>Prestamos existentes</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Visualizacion de lista de reseñas",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "libroID": 2, "titulo": "Cien Años de Soledad",
+                                    "nombre": "Juan Pérez",
+                                    "calificacion": 4.5,
+                                    "comentario": "Gran libro!"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Review"
+                        }
+                    },
+                    "403": {
+                        "description": "No existen prestamos"
+                    }
+                }
+            }
+        }, "/api/Administrator/eliminarreviews/{id}": {
+            "delete": {
+                "tags": ["Administracion_Resenas"],
+                "summary": "Eliminacion de reseña dado su identificador",
+                "description": "<p>Servicio que permite al administrador eliminar una reseña dado el identificador de la reseña</p><p>&nbsp;</p><p><em><strong>Eliminando reseña</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "Eliminacion exitosa"
+                    },
+                    "403": {
+                        "description": "Error de eliminacion"
+                    }
+                },
+                "parameters": [
+                    {
+                        "description": "apiKey",
+                        "type": "string",
+                        "in": "header",
+                        "name": "Authorization",
+                        "default": "eyJhbGciOiJIUzI1NiJ9.ZXJpa3VlQGdtYWlsLmNvbQ.v7atXtnZ9F14ahwqCSjYKQirsvjs5aWQ4MrPz-BCBSk"
+                    }, {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "Identificador de la reseña",
+                        "type": "number",
+                        "default": "1"
+                    }
+                ]
+            }
+        }
+    }, "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al libro al que se le agrega el genero"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del genero"
+                }
+            }
+        }, "NewUser": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del usuario"
+                },
+                "correoElectronico": {
+                    "type": "string",
+                    "description": "Correo del usuario"
+                },
+                "contrasena": {
+                    "type": "string",
+                    "description": "Contrasena del usuario"
+                }
+            }
+        }, "AUser": {
+            "type": "object",
+            "properties": {
+                "RolID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al usuario o administrador"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del usuario o del administrador"
+                },
+                "correoElectronico": {
+                    "type": "string",
+                    "description": "Correo del usuario usuario o administrador"
+                }
+            }
+        }, "NewAdministrator": {
+            "type": "object",
+            "properties": {
+                "usuarioID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al usuario que sera covertido en administrador"
+                }
+            }
+        }, "Validation": {
+            "type": "object",
+            "properties": {
+                "correoElectronico": {
+                    "type": "string",
+                    "description": "Correo del usuario o del administrador"
+                },
+                "contrasena": {
+                    "type": "string",
+                    "description": "Contrasena del usuario o del administrador"
+                }
+            }
+        }, "Book": {
+            "type": "object",
+            "properties": {
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al libro"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Nombre del libro"
+                },
+                "autor": {
+                    "type": "string",
+                    "description": "Nombre del autor del libro"
+                },
+                "descripcion": {
+                    "type": "string",
+                    "description": "Descripcion del contenido del libro"
+                }, "genero": {
+                    "type": "string",
+                    "description": "Tipo de genero al cual pertenece el libro"
+                }, "disponible": {
+                    "type": "number",
+                    "description": "Indica si el libro esta disponible, 1 significa disponible y 0 no disponible"
+                }
+            }
+        }, "SearchBook": {
+            "type": "object",
+            "properties": {
+                "Identificador": {
+                    "type": "string",
+                    "description": "Titulo o nombre deel autor del libro"
+                }
+            }
+        },
+        "NewBook": {
+            "type": "object",
+            "properties": {
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro"
+                },
+                "autor": {
+                    "type": "string",
+                    "description": "Nombre del autor del libro"
+                },
+                "descripcion": {
+                    "type": "string",
+                    "description": "Descripcion del libro"
+                }, "disponible": {
+                    "type": "number",
+                    "description": "Indica si el libro esta disponible, 1 significa disponible y 0 no disponible"
+                }
+            }
+        }, "PopularBook": {
+            "type": "object",
+            "properties": {
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al libro"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Nombre del libro"
+                },
+                "cantidadReseñas": {
+                    "type": "number",
+                    "description": "Total de reseñas que el libro tiene actualmente"
+                }
+            }
+        }, "Bookestado": {
+            "type": "object",
+            "properties": {
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar al libro"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Nombre del libro"
+                },
+                "autor": {
+                    "type": "string",
+                    "description": "Nombre del autor del libro"
+                }, "estado": {
+                    "type": "string",
+                    "description": "Da el mensaje de si el libro esta disponile a los usuarios o no lo esta"
+                }
+            }
+        }, "ReadingList": {
+            "type": "object",
+            "properties": {
+                "listaID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar la lista de lectura"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro"
+                },
+                "autor": {
+                    "type": "string",
+                    "description": "Nombre del autor del libro"
+                },
+                "descripcion": {
+                    "type": "string",
+                    "description": "Descripcion del libro"
+                }, "nombre": {
+                    "type": "string",
+                    "description": "Tipo de genero al cual pertenece el libro"
+                }
+            }
+        }, "Review": {
+            "type": "object",
+            "properties": {
+                "resenaID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar la reseña"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del usuario que realizo la reseña"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro al cual se le hizo la reseña"
+                },
+                "calificacion": {
+                    "type": "number",
+                    "description": "Calificacion dada al libro"
+                },
+                "comentario": {
+                    "type": "string",
+                    "description": "Comentario acerca del libro"
+                }
+            }
+        },
+        "NewReview": {
+            "type": "object",
+            "properties": {
+                "usuarioID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al usuario que realizo la reseña"
+                },
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que identifica el libro al cual se le hizo la reseña"
+                },
+                "calificacion": {
+                    "type": "number",
+                    "description": "Calificacion dada al libro"
+                },
+                "comentario": {
+                    "type": "string",
+                    "description": "Comentario acerca del libro"
+                }
+            }
+        },
+        "UpdateReview": {
+            "type": "object",
+            "properties": {
+                "calificacion": {
+                    "type": "number",
+                    "description": "Calificacion dada al libro"
+                },
+                "comentario": {
+                    "type": "string",
+                    "description": "Comentario acerca del libro"
+                }
+            }
+        }, "Loans": {
+            "type": "object",
+            "properties": {
+                "prestamoID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al prestamo"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro prestado"
+                },
+                "autor": {
+                    "type": "string",
+                    "description": "Autor del libro prestado"
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado del libro prestado (devuelto o no devuelto)"
+                },
+                "enlace": {
+                    "type": "string",
+                    "description": "Enlace del libro prestado"
+                }
+            }
+        },
+        "Availabletime": {
+            "type": "object",
+            "properties": {
+                "prestamoID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al prestamo"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro prestado"
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado del libro prestado (devuelto o no devuelto)"
+                },
+                "diasRestantes": {
+                    "type": "number",
+                    "description": "Tiempo restante que el usuario posee para leer el libro solicitado"
+                }
+            }
+        }, "Availabletime_": {
+            "type": "object",
+            "properties": {
+                "prestamoID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al prestamo"
+                },
+                "titulo_libro": {
+                    "type": "string",
+                    "description": "Titulo del libro prestado"
+                }, "nombre_solicitante": {
+                    "type": "string",
+                    "description": "Titulo del usuario que solicito el prestamo"
+                }, "fechaExpedicion": {
+                    "type": "string",
+                    "description": "Fecha en que el usuario solicito el prestamo"
+                }, "fechaRecibo": {
+                    "type": "string",
+                    "description": "Fecha en que el usuario debe devolver el libro"
+                }, "diasRestantes": {
+                    "type": "number",
+                    "description": "Tiempo restante que el usuario posee para leer el libro solicitado"
+                }, "estado": {
+                    "type": "string",
+                    "description": "Estado del libro prestado (devuelto o no devuelto)"
+                }
+            }
+        }, "Newloans": {
+            "type": "object",
+            "properties": {
+                "usuarioID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al usuario que solicita el prestamo"
+                },
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al libro que es solicitado"
+                }
+            }
+        }, "Version": {
+            "type": "object",
+            "properties": {
+                "versionID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar la version del libro"
+                },
+                "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro"
+                },
+                "tipo_version": {
+                    "type": "string",
+                    "description": "Tipo de version disponible del libro"
+                }, "enlace": {
+                    "type": "string",
+                    "description": "Enlace de la version del libro"
+                }
+            }
+        }, "NewVersion": {
+            "type": "object",
+            "properties": {
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que permite identificar el libro"
+                },
+                "tipo_version": {
+                    "type": "string",
+                    "description": "Tipo de version disponible del libro"
+                }, "enlace": {
+                    "type": "string",
+                    "description": "Enlace de la version del libro"
+                }
+            }
+        }, "UpdateVersion": {
+            "type": "object",
+            "properties": {
+                "tipo_version": {
+                    "type": "string",
+                    "description": "Tipo de version disponible del libro"
+                },
+                "enlace": {
+                    "type": "string",
+                    "description": "Enlace del libro"
+                }
+            }
+        }, "Genders": {
+            "type": "object",
+            "properties": {
+                "generoID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al genero"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del genero"
+                }
+            }
+        }, "NewGenders": {
+            "type": "object",
+            "properties": {
+                "libroID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al genero"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del genero"
+                }
+            }
+        }, "GendersBook": {
+            "type": "object",
+            "properties": {
+                "generoID": {
+                    "type": "number",
+                    "description": "Codigo que identifica al genero"
+                }, "titulo": {
+                    "type": "string",
+                    "description": "Titulo del libro"
+                }, "nombre": {
+                    "type": "string",
+                    "description": "Nombre del genero"
+                }
+            }
+        }
+    }
+}
